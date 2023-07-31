@@ -1,5 +1,5 @@
 ﻿using Api;
-using Domain.Common.DTOs;
+using Client.Abstractions.DTOs.Models;
 using FluentAssertions;
 using Infrastructure.Common.Clients;
 using Microsoft.Extensions.Configuration;
@@ -19,14 +19,14 @@ namespace Infrastructure.Tests.Integration.Common.Clients
 			// Arrange
 			var config = WebApplicationFactory.Services.GetRequiredService<IConfiguration>();
 			var serviceProvider = WebApplicationFactory.Services.GetRequiredService<IServiceProvider>();
-			var client = new HttpOpenAiClient(serviceProvider, config);
+			var client = new HttpOpenAiClient(serviceProvider, Mapper, config);
 
 			// Act
 			var response = await client.ListModels();			
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+			response.Should().BeAssignableTo<IEnumerable<ModelDTO>>();
 		}
 	}
 }

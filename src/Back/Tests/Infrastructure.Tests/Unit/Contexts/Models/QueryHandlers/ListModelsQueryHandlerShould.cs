@@ -1,8 +1,8 @@
 ﻿using Api;
 using Application.Contexts.Models.Commands.Handlers;
 using Application.Contexts.Models.Queries;
+using Client.Abstractions.DTOs.Models;
 using Domain.Common.Clients;
-using Domain.Common.DTOs;
 using FluentAssertions;
 using Moq;
 using Tests.Core;
@@ -29,7 +29,7 @@ namespace Infrastructure.Tests.Unit.Contexts.Models.QueryHandlers
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+			response.Should().BeAssignableTo<IEnumerable<ModelDTO>>();
 		}
 	}
 }

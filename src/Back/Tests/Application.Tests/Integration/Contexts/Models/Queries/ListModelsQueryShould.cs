@@ -1,6 +1,6 @@
 ﻿using Api;
 using Application.Contexts.Models.Queries;
-using Domain.Common.DTOs;
+using Client.Abstractions.DTOs.Models;
 using FluentAssertions;
 using Tests.Core;
 
@@ -18,11 +18,11 @@ namespace Application.Tests.Integration.Contexts.Models.Queries
             var query = new ListModelsQuery();
 
 			// Act
-			var response = await Mediator.Send<IEnumerable<OpenAiModelDTO>>(query, CancellationToken.None);
+			var response = await Mediator.Send<IEnumerable<ModelDTO>>(query, CancellationToken.None);
 
             // Assert
             response.Should().NotBeNull();
-            response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+            response.Should().BeAssignableTo<IEnumerable<ModelDTO>>();
         }
     }
 }

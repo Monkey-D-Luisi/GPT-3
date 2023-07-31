@@ -1,9 +1,9 @@
-﻿using Domain.Common.DTOs;
+﻿using Client.Abstractions.DTOs.Models;
 using MediatR;
 
 namespace Application.Contexts.Models.Queries
 {
-	public class GetModelQuery : IRequest<OpenAiModelDTO>
+	public class GetModelQuery : IRequest<ModelDTO>
 	{
 
 

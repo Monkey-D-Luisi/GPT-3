@@ -1,4 +1,4 @@
-﻿using Domain.Common.DTOs;
+﻿using Client.Abstractions.DTOs.Models;
 
 namespace Domain.Common.Clients
 {
@@ -6,7 +6,7 @@ namespace Domain.Common.Clients
 	{
 
 
-		Task<IEnumerable<OpenAiModelDTO>> ListModels();
-		Task<OpenAiModelDTO> GetModel(string modelId);
+		Task<IEnumerable<ModelDTO>> ListModels();
+		Task<ModelDTO> GetModel(string modelId);
 	}
 }

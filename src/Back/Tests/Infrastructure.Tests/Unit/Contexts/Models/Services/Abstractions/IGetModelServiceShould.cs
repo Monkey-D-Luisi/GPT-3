@@ -1,8 +1,8 @@
 ﻿using Api;
-using Domain.Common.DTOs;
-using Domain.Contexts.Models.Services;
 using FluentAssertions;
 using Flurl.Http.Testing;
+using Infrastructure.Contexts.Models.Services.Abstractions;
+using Infrastructure.Contexts.Models.Services.DTOs;
 using Microsoft.Extensions.DependencyInjection;
 using Tests.Core;
 

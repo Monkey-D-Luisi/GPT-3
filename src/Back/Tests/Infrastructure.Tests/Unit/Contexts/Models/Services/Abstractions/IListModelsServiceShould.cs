@@ -1,8 +1,8 @@
 ﻿using Api;
-using Domain.Common.DTOs;
-using Domain.Contexts.Models.Services;
 using FluentAssertions;
 using Flurl.Http.Testing;
+using Infrastructure.Contexts.Models.Services.Abstractions;
+using Infrastructure.Contexts.Models.Services.DTOs;
 using Microsoft.Extensions.DependencyInjection;
 using Tests.Core;
 
@@ -18,7 +18,7 @@ namespace Domain.Tests.Unit.Contexts.Models.Services
 		{
 			// Arrange
 			using var httpTest = new HttpTest();
-			httpTest.RespondWithJson(new { data = Models });
+			httpTest.RespondWithJson(new { data = OpenAiModels });
 
 			var client = WebApplicationFactory.Services.GetRequiredService<IListModelsService>();
 

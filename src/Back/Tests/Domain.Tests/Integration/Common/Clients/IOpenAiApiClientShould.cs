@@ -1,6 +1,6 @@
 ﻿using Api;
+using Client.Abstractions.DTOs.Models;
 using Domain.Common.Clients;
-using Domain.Common.DTOs;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Tests.Core;
@@ -23,7 +23,7 @@ namespace Domain.Tests.Integration.Common.Clients
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+			response.Should().BeAssignableTo<IEnumerable<ModelDTO>>();
 		}
 
 
@@ -38,7 +38,7 @@ namespace Domain.Tests.Integration.Common.Clients
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<OpenAiModelDTO>();
+			response.Should().BeAssignableTo<ModelDTO>();
 		}
 	}
 }

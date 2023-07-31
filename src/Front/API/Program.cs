@@ -1,8 +1,9 @@
 using Application.Contexts.Models.Commands.Handlers;
 using Domain.Common.Clients;
-using Domain.Contexts.Models.Services;
 using Infrastructure.Common.Clients;
 using Infrastructure.Contexts.Models.Services;
+using Infrastructure.Contexts.Models.Services.Abstractions;
+using System.Reflection;
 
 namespace Api;
 public class Program
@@ -18,7 +19,7 @@ public class Program
 		builder.Services.AddEndpointsApiExplorer();
 		builder.Services.AddSwaggerGen();
 
-		builder.Services.AddTransient<IOpenAiClient, HttpOpenAiClient>();
+		builder.Services.AddScoped<IOpenAiClient, HttpOpenAiClient>();
 		builder.Services.AddSingleton<IListModelsService, ListModelsService>();
 		builder.Services.AddSingleton<IGetModelService, GetModelService>();
 
@@ -27,6 +28,8 @@ public class Program
 				cfg.RegisterServicesFromAssembly(typeof(ListModelsQueryHandler).Assembly);
 				cfg.RegisterServicesFromAssembly(typeof(GetModelQueryHandler).Assembly);
 			});
+
+		builder.Services.AddAutoMapper(Assembly.Load("Infrastructure"));
 
 		var app = builder.Build();
 

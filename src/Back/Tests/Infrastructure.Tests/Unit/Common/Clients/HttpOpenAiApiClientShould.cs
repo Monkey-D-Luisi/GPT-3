@@ -1,10 +1,9 @@
 ﻿using Api;
-using Domain.Common.DTOs;
-using Domain.Contexts.Models.Services;
+using Client.Abstractions.DTOs.Models;
 using FluentAssertions;
 using Infrastructure.Common.Clients;
+using Infrastructure.Contexts.Models.Services.Abstractions;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Tests.Core;
 
@@ -21,7 +20,7 @@ namespace Domain.Tests.Unit.Common.Clients
 			// Arrange
 			var listModelsServiceMock = new Mock<IListModelsService>();
 			listModelsServiceMock.Setup(service => service.ListModels(ApiHost, ApiKey))
-				.ReturnsAsync(Models);
+				.ReturnsAsync(OpenAiModels);
 			var configMock = new Mock<IConfiguration>();
 			configMock.Setup(config => config.GetSection("OpenAi:Api:HttpHost").Value).Returns(ApiHost);
 			configMock.Setup(config => config.GetSection("OpenAi:Api:Key").Value).Returns(ApiKey);
@@ -29,14 +28,14 @@ namespace Domain.Tests.Unit.Common.Clients
 			serviceProviderMock.Setup(provider => provider.GetService(typeof(IListModelsService)))
 				.Returns(listModelsServiceMock.Object);
 
-			var client = new HttpOpenAiClient(serviceProviderMock.Object, configMock.Object);
+			var client = new HttpOpenAiClient(serviceProviderMock.Object, Mapper, configMock.Object);
 
 			// Act
 			var response = await client.ListModels();
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+			response.Should().BeAssignableTo<IEnumerable<ModelDTO>>();
 		}
 
 
@@ -46,7 +45,7 @@ namespace Domain.Tests.Unit.Common.Clients
 			// Arrange
 			var getModelServiceMock = new Mock<IGetModelService>();
 			getModelServiceMock.Setup(service => service.GetModel(ModelId, ApiHost, ApiKey))
-				.ReturnsAsync(Model);
+				.ReturnsAsync(OpenAiModel);
 			var configMock = new Mock<IConfiguration>();
 			configMock.Setup(config => config.GetSection("OpenAi:Api:HttpHost").Value).Returns(ApiHost);
 			configMock.Setup(config => config.GetSection("OpenAi:Api:Key").Value).Returns(ApiKey);
@@ -54,14 +53,14 @@ namespace Domain.Tests.Unit.Common.Clients
 			serviceProviderMock.Setup(provider => provider.GetService(typeof(IGetModelService)))
 				.Returns(getModelServiceMock.Object);
 
-			var client = new HttpOpenAiClient(serviceProviderMock.Object, configMock.Object);
+			var client = new HttpOpenAiClient(serviceProviderMock.Object, Mapper, configMock.Object);
 
 			// Act
 			var response = await client.GetModel(ModelId);
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<OpenAiModelDTO>();
+			response.Should().BeAssignableTo<ModelDTO>();
 		}
 	}
 }

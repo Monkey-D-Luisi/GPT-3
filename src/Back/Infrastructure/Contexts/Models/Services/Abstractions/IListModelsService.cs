@@ -1,6 +1,6 @@
-﻿using Domain.Common.DTOs;
+﻿using Infrastructure.Contexts.Models.Services.DTOs;
 
-namespace Domain.Contexts.Models.Services
+namespace Infrastructure.Contexts.Models.Services.Abstractions
 {
 	public interface IListModelsService
 	{

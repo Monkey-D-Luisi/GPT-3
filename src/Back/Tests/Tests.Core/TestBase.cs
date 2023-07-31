@@ -1,4 +1,8 @@
-﻿using Domain.Common.DTOs;
+﻿using AutoMapper;
+using Client.Abstractions.DTOs.Models;
+using Domain.Common.Clients;
+using Infrastructure.Common.Clients;
+using Infrastructure.Contexts.Models.Services.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -13,14 +17,22 @@ namespace Tests.Core
 		static private WebApplicationFactory<T> webApplicationFactory;
 		static private HttpClient webApplicationClient;
 		static private IMediator mediator;
+		static private IMapper mapper;
 
-		protected readonly IEnumerable<OpenAiModelDTO> Models = 
+		protected readonly IEnumerable<OpenAiModelDTO> OpenAiModels = 
 			new List<OpenAiModelDTO>()
 			{
 				new OpenAiModelDTO(),
 				new OpenAiModelDTO()
 			};
-		protected readonly OpenAiModelDTO Model = new OpenAiModelDTO();
+		protected readonly OpenAiModelDTO OpenAiModel = new OpenAiModelDTO();
+		protected readonly IEnumerable<ModelDTO> Models =
+			new List<ModelDTO>()
+			{
+				new ModelDTO(),
+				new ModelDTO()
+			};
+		protected readonly ModelDTO Model = new ModelDTO();
 		protected readonly string ApiHost = "https://api.openai.com";
 		protected readonly string ApiKey = "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";
 		protected readonly string ModelId = "text-davinci-003";
@@ -37,7 +49,14 @@ namespace Tests.Core
 		{
 			builder.ConfigureServices((context, services) =>
 			{
-				
+				var existingDescriptor = services.FirstOrDefault(
+				d => d.ServiceType == typeof(IOpenAiClient) &&
+					 d.ImplementationType == typeof(HttpOpenAiClient));
+				if (existingDescriptor != null)
+				{
+					services.Remove(existingDescriptor);
+				}
+				services.AddSingleton<IOpenAiClient, HttpOpenAiClient>();
 			});
 		}
 
@@ -46,5 +65,8 @@ namespace Tests.Core
 
 
 		protected IMediator Mediator => mediator ??= WebApplicationFactory.Services.GetRequiredService<IMediator>();
+
+
+		protected IMapper Mapper => mapper ??= WebApplicationFactory.Services.GetRequiredService<IMapper>();
 	}
 }

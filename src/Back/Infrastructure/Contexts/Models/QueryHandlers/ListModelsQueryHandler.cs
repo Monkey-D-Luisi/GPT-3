@@ -1,11 +1,11 @@
 ﻿using Application.Contexts.Models.Queries;
+using Client.Abstractions.DTOs.Models;
 using Domain.Common.Clients;
-using Domain.Common.DTOs;
 using MediatR;
 
 namespace Application.Contexts.Models.Commands.Handlers
 {
-	public class ListModelsQueryHandler : IRequestHandler<ListModelsQuery, IEnumerable<OpenAiModelDTO>>
+	public class ListModelsQueryHandler : IRequestHandler<ListModelsQuery, IEnumerable<ModelDTO>>
 	{
 
 
@@ -18,7 +18,7 @@ namespace Application.Contexts.Models.Commands.Handlers
 		}
 
 
-		public async Task<IEnumerable<OpenAiModelDTO>> Handle(ListModelsQuery request, CancellationToken cancellationToken)
+		public async Task<IEnumerable<ModelDTO>> Handle(ListModelsQuery request, CancellationToken cancellationToken)
 		{
 			return await client.ListModels();
 		}
