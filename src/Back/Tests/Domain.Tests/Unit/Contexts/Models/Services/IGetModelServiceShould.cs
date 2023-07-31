@@ -9,25 +9,25 @@ using Tests.Core;
 namespace Domain.Tests.Unit.Contexts.Models.Services
 {
 	[TestFixture(Category = "Unit")]
-	internal class IListModelsServiceShould : TestBase<Program>
+	internal class IGetModelServiceShould : TestBase<Program>
 	{
 
 
 		[Test]
-		public async Task Get_a_models_list()
+		public async Task Get_a_model()
 		{
 			// Arrange
 			using var httpTest = new HttpTest();
-			httpTest.RespondWithJson(new { data = Models });
+			httpTest.RespondWithJson(new { data = Model });
 
-			var client = WebApplicationFactory.Services.GetRequiredService<IListModelsService>();
+			var client = WebApplicationFactory.Services.GetRequiredService<IGetModelService>();
 
 			// Act
-			var response = await client.ListModels(ApiHost, ApiKey);
+			var response = await client.GetModel(ModelId, ApiHost, ApiKey);
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+			response.Should().BeAssignableTo<OpenAiModelDTO>();
 		}
 	}
 }

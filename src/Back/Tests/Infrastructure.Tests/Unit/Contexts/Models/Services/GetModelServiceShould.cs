@@ -10,7 +10,7 @@ using Tests.Core;
 namespace Infrastructure.Tests.Unit.Contexts.Models.Services
 {
 	[TestFixture(Category = "Unit")]
-	internal class ListModelsServiceShould : TestBase<Program>
+	internal class GetModelServiceShould : TestBase<Program>
 	{
 
 
@@ -22,14 +22,14 @@ namespace Infrastructure.Tests.Unit.Contexts.Models.Services
 			httpTest.RespondWithJson(new { data = Models });
 
 			var config = WebApplicationFactory.Services.GetRequiredService<IConfiguration>();
-			var service = new ListModelsService(config);
+			var service = new GetModelService(config);
 
 			// Act
-			var response = await service.ListModels(ApiHost, ApiKey);
+			var response = await service.GetModel(ModelId, ApiHost, ApiKey);
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+			response.Should().BeAssignableTo<OpenAiModelDTO>();
 		}
 	}
 }

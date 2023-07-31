@@ -30,5 +30,13 @@ namespace Infrastructure.Common.Clients
 
 			return await service.ListModels(apiHost, apiKey);
 		}
+
+
+		public async Task<OpenAiModelDTO> GetModel(string modelId)
+		{
+			var service = serviceProvider.GetRequiredService<IGetModelService>();
+
+			return await service.GetModel(modelId, apiHost, apiKey);
+		}
 	}
 }

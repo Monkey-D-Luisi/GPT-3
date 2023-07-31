@@ -7,5 +7,6 @@ namespace Domain.Common.Clients
 
 
 		Task<IEnumerable<OpenAiModelDTO>> ListModels();
+		Task<OpenAiModelDTO> GetModel(string modelId);
 	}
 }

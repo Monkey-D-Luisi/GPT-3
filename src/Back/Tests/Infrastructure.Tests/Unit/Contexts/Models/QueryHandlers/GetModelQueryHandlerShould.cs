@@ -10,26 +10,26 @@ using Tests.Core;
 namespace Infrastructure.Tests.Unit.Contexts.Models.QueryHandlers
 {
 	[TestFixture(Category = "Unit")]
-	internal class ListModelsQueryHandlerShould : TestBase<Program>
+	internal class GetModelQueryHandlerShould : TestBase<Program>
 	{
 
 
 		[Test]
-		public async Task Get_a_models_list()
+		public async Task Get_a_model()
 		{
 			// Arrange
 			var client = new Mock<IOpenAiClient>();
-			client.Setup(client => client.ListModels())
-				.ReturnsAsync(Models);
+			client.Setup(client => client.GetModel(ModelId))
+				.ReturnsAsync(Model);
 
-			var handler = new ListModelsQueryHandler(client.Object);
+			var handler = new GetModelQueryHandler(client.Object);
 
 			// Act
-			var response = await handler.Handle(new ListModelsQuery(), CancellationToken.None);
+			var response = await handler.Handle(new GetModelQuery(ModelId), CancellationToken.None);
 
 			// Assert
 			response.Should().NotBeNull();
-			response.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
+			response.Should().BeAssignableTo<OpenAiModelDTO>();
 		}
 	}
 }

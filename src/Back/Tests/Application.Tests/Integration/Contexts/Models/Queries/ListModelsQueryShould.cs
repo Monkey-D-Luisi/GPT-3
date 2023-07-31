@@ -12,7 +12,7 @@ namespace Application.Tests.Integration.Contexts.Models.Queries
 
 
         [Test]
-        public async Task Get_a_moq_response_asking_for_models()
+        public async Task Get_a_models_list()
         {
             // Arrange
             var query = new ListModelsQuery();

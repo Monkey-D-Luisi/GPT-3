@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Back\Tests\Tests.Core\Tests.Core.csproj" />
-    <ProjectReference Include="..\src\Front\API\Api.csproj" />
+    <ProjectReference Include="..\..\..\Back\Tests\Tests.Core\Tests.Core.csproj" />
+    <ProjectReference Include="..\..\API\Api.csproj" />
   </ItemGroup>
 
 </Project>

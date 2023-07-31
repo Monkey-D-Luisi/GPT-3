@@ -1,10 +1,8 @@
 using Application.Contexts.Models.Commands.Handlers;
-using Application.Contexts.Models.Queries;
 using Domain.Common.Clients;
 using Domain.Contexts.Models.Services;
 using Infrastructure.Common.Clients;
 using Infrastructure.Contexts.Models.Services;
-using System.Net.NetworkInformation;
 
 namespace Api;
 public class Program
@@ -22,9 +20,13 @@ public class Program
 
 		builder.Services.AddTransient<IOpenAiClient, HttpOpenAiClient>();
 		builder.Services.AddSingleton<IListModelsService, ListModelsService>();
+		builder.Services.AddSingleton<IGetModelService, GetModelService>();
 
 		builder.Services.AddMediatR(cfg =>
-			cfg.RegisterServicesFromAssembly(typeof(ListModelsQueryHandler).Assembly));
+			{
+				cfg.RegisterServicesFromAssembly(typeof(ListModelsQueryHandler).Assembly);
+				cfg.RegisterServicesFromAssembly(typeof(GetModelQueryHandler).Assembly);
+			});
 
 		var app = builder.Build();
 

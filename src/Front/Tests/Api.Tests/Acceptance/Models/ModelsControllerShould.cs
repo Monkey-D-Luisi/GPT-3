@@ -25,5 +25,21 @@ namespace Api.Tests.Acceptance.Models
 			content.Should().NotBeNull();
 			content.Should().BeAssignableTo<IEnumerable<OpenAiModelDTO>>();
 		}
+
+
+		[Test]
+		public async Task Get_a_model()
+		{
+			// Arrange
+
+			// Act
+			var response = await WebApplicationClient.GetAsync($"v1/models/{ModelId}");
+			var content = await response.Content.ReadFromJsonAsync<OpenAiModelDTO>();
+
+			// Assert
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+			content.Should().NotBeNull();
+			content.Should().BeAssignableTo<OpenAiModelDTO>();
+		}
 	}
 }

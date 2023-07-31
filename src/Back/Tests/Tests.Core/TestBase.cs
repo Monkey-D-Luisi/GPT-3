@@ -20,8 +20,10 @@ namespace Tests.Core
 				new OpenAiModelDTO(),
 				new OpenAiModelDTO()
 			};
+		protected readonly OpenAiModelDTO Model = new OpenAiModelDTO();
 		protected readonly string ApiHost = "https://api.openai.com";
 		protected readonly string ApiKey = "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";
+		protected readonly string ModelId = "text-davinci-003";
 
 
 		protected WebApplicationFactory<T> WebApplicationFactory => TestBase<T>.webApplicationFactory
