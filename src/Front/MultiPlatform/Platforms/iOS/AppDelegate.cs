@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace GPT_3_MultiPlatform;
+namespace MultiPlatform;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

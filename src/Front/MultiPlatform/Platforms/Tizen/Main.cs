@@ -2,7 +2,7 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace GPT_3_MultiPlatform;
+namespace MultiPlatform;
 
 class Program : MauiApplication
 {

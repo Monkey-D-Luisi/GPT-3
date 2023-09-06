@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace GPT_3_MultiPlatform;
+namespace MultiPlatform;
 
 [Application]
 public class MainApplication : MauiApplication

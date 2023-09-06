@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace GPT_3_MultiPlatform;
+namespace MultiPlatform;
 
 public class Program
 {
