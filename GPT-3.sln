@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.Abstractions", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiPlatform.Tests", "src\Front\Tests\MultiPlatform.Tests\MultiPlatform.Tests.csproj", "{F5104091-0190-431D-88F6-3E8F69B364B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.OpenAi", "src\Back\Infrastructure.OpenAi\Infrastructure.OpenAi.csproj", "{79973E08-3EAF-4C64-A15F-34A13F2401C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{F5104091-0190-431D-88F6-3E8F69B364B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5104091-0190-431D-88F6-3E8F69B364B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5104091-0190-431D-88F6-3E8F69B364B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79973E08-3EAF-4C64-A15F-34A13F2401C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79973E08-3EAF-4C64-A15F-34A13F2401C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79973E08-3EAF-4C64-A15F-34A13F2401C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79973E08-3EAF-4C64-A15F-34A13F2401C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{4AFC2DEE-8D07-4209-A935-5162E1FE85E8} = {3C7C2095-90C2-4DEB-993B-79254AEB549B}
 		{6A838FDD-A174-4E21-A085-21BF0EAAF0BB} = {C7BBC25A-BA9A-4024-8E12-6A6E397B89B3}
 		{F5104091-0190-431D-88F6-3E8F69B364B3} = {3C7C2095-90C2-4DEB-993B-79254AEB549B}
+		{79973E08-3EAF-4C64-A15F-34A13F2401C6} = {C7BBC25A-BA9A-4024-8E12-6A6E397B89B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

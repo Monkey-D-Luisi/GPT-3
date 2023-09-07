@@ -2,14 +2,14 @@
 using Application.Contexts.Models.Commands.Handlers;
 using Application.Contexts.Models.Queries;
 using Client.Abstractions.DTOs.Models;
-using Domain.Common.Clients;
 using FluentAssertions;
+using Infrastructure.OpenAi.Clients.Abstractions;
 using Moq;
 using Tests.Core;
 
 namespace Infrastructure.Tests.Unit.Contexts.Models.QueryHandlers
 {
-	[TestFixture(Category = "Unit")]
+    [TestFixture(Category = "Unit")]
 	internal class ListModelsQueryHandlerShould : TestBase<Program>
 	{
 
@@ -20,9 +20,9 @@ namespace Infrastructure.Tests.Unit.Contexts.Models.QueryHandlers
 			// Arrange
 			var client = new Mock<IOpenAiClient>();
 			client.Setup(client => client.ListModels())
-				.ReturnsAsync(Models);
+				.ReturnsAsync(OpenAiModels);
 
-			var handler = new ListModelsQueryHandler(client.Object);
+			var handler = new ListModelsQueryHandler(Mapper, client.Object);
 
 			// Act
 			var response = await handler.Handle(new ListModelsQuery(), CancellationToken.None);

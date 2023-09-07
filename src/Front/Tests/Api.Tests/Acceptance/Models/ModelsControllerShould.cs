@@ -40,6 +40,22 @@ namespace Api.Tests.Acceptance.Models
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			content.Should().NotBeNull();
 			content.Should().BeAssignableTo<ModelDTO>();
-		}
-	}
+        }
+
+
+        [Test]
+        public async Task List_models_and_get_first()
+        {
+            // Arrange
+            var arrangeResponse = await WebApplicationClient.GetAsync($"v1/models");
+            var models = await arrangeResponse.Content.ReadFromJsonAsync<IEnumerable<ModelDTO>>();
+
+            // Act
+            var response = await WebApplicationClient.GetAsync($"v1/models/{models.First().Id}");
+            var content = await response.Content.ReadFromJsonAsync<ModelDTO>();
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+    }
 }

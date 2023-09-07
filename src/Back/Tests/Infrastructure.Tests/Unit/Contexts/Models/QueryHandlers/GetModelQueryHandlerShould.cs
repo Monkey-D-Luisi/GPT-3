@@ -2,14 +2,14 @@
 using Application.Contexts.Models.Commands.Handlers;
 using Application.Contexts.Models.Queries;
 using Client.Abstractions.DTOs.Models;
-using Domain.Common.Clients;
 using FluentAssertions;
+using Infrastructure.OpenAi.Clients.Abstractions;
 using Moq;
 using Tests.Core;
 
 namespace Infrastructure.Tests.Unit.Contexts.Models.QueryHandlers
 {
-	[TestFixture(Category = "Unit")]
+    [TestFixture(Category = "Unit")]
 	internal class GetModelQueryHandlerShould : TestBase<Program>
 	{
 
@@ -20,9 +20,9 @@ namespace Infrastructure.Tests.Unit.Contexts.Models.QueryHandlers
 			// Arrange
 			var client = new Mock<IOpenAiClient>();
 			client.Setup(client => client.GetModel(ModelId))
-				.ReturnsAsync(Model);
+				.ReturnsAsync(OpenAiModel);
 
-			var handler = new GetModelQueryHandler(client.Object);
+			var handler = new GetModelQueryHandler(Mapper, client.Object);
 
 			// Act
 			var response = await handler.Handle(new GetModelQuery(ModelId), CancellationToken.None);

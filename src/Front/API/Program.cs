@@ -1,8 +1,8 @@
 using Application.Contexts.Models.Commands.Handlers;
-using Domain.Common.Clients;
-using Infrastructure.Common.Clients;
-using Infrastructure.Contexts.Models.Services;
-using Infrastructure.Contexts.Models.Services.Abstractions;
+using Infrastructure.OpenAi.Clients;
+using Infrastructure.OpenAi.Clients.Abstractions;
+using Infrastructure.OpenAi.Contexts.Models.Services;
+using Infrastructure.OpenAi.Contexts.Models.Services.Abstractions;
 using System.Reflection;
 
 namespace Api;
@@ -26,7 +26,9 @@ public class Program
 		builder.Services.AddMediatR(cfg =>
 			{
 				cfg.RegisterServicesFromAssembly(typeof(ListModelsQueryHandler).Assembly);
+				cfg.RegisterServicesFromAssembly(typeof(Infrastructure.OpenAi.Contexts.Models.Queries.Handlers.ListModelsQueryHandler).Assembly);
 				cfg.RegisterServicesFromAssembly(typeof(GetModelQueryHandler).Assembly);
+				cfg.RegisterServicesFromAssembly(typeof(Infrastructure.OpenAi.Contexts.Models.Queries.Handlers.GetModelQueryHandler).Assembly);
 			});
 
 		builder.Services.AddAutoMapper(Assembly.Load("Infrastructure"));

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Client.Abstractions.DTOs.Models;
-using Domain.Common.Clients;
-using Infrastructure.Common.Clients;
-using Infrastructure.Contexts.Models.Services.DTOs;
+using Infrastructure.OpenAi.Clients;
+using Infrastructure.OpenAi.Clients.Abstractions;
+using Infrastructure.OpenAi.Contexts.Models.Services.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Tests.Core
 {
-	public class TestBase<T> where T : class
+    public class TestBase<T> where T : class
 	{
 
 

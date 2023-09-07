@@ -1,26 +1,32 @@
 ﻿using Application.Contexts.Models.Queries;
+using AutoMapper;
 using Client.Abstractions.DTOs.Models;
-using Domain.Common.Clients;
+using Infrastructure.OpenAi.Clients.Abstractions;
 using MediatR;
 
 namespace Application.Contexts.Models.Commands.Handlers
 {
-	public class GetModelQueryHandler : IRequestHandler<GetModelQuery, ModelDTO>
+    public class GetModelQueryHandler : IRequestHandler<GetModelQuery, ModelDTO>
 	{
 
 
-		private readonly IOpenAiClient client;
+        private readonly IMapper mapper;
+        private readonly IOpenAiClient client;
 
 
-		public GetModelQueryHandler(IOpenAiClient client)
+		public GetModelQueryHandler(IMapper mapper, IOpenAiClient client)
 		{
+			this.mapper = mapper;
 			this.client = client;
 		}
 
 
 		public async Task<ModelDTO> Handle(GetModelQuery request, CancellationToken cancellationToken)
 		{
-			return await client.GetModel(request.ModelId);
-		}
+			var model = await client.GetModel(request.ModelId);
+
+			return mapper.Map<ModelDTO>(model);
+
+        }
 	}
 }

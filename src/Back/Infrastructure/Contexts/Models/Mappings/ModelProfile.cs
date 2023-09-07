@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Client.Abstractions.DTOs.Models;
-using Infrastructure.Contexts.Models.Services.DTOs;
+using Infrastructure.OpenAi.Contexts.Models.Services.DTOs;
 
 namespace Infrastructure.Contexts.Models.Mappings
 {
-	public class ModelProfile : Profile
+    public class ModelProfile : Profile
 	{
 
 
