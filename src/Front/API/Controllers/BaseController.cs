@@ -7,7 +7,7 @@ namespace Api.Controllers
 	{
 
 
-		static private IMediator mediator;
+		private IMediator mediator;
 
 
 		protected IMediator Mediator => mediator ??= (IMediator)HttpContext.RequestServices.GetService(typeof(IMediator));
